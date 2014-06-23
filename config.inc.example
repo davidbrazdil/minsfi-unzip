@@ -1,0 +1,4 @@
+#!/bin/bash
+
+DIR_NACL=${HOME}/devel/nacl/native_client
+DIR_CHROMIUMr=${HOME}/devel/chromium/src
