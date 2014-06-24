@@ -21,6 +21,18 @@ pnacl-ld -r out/lock.c.o out/untrusted_support.c.o out/minsfi_test.c.o -lc \
 ./link_nonsfi_prog.sh out/minsfi_test.before.bc out/minsfi_test
 ./out/minsfi_test
 
+# Build and run tests
+
+clang   $cflags -c trusted/system_io.c -o out/system_io.c.o
+clang++ $cflags -c trusted/system_io_test.cc -o out/system_io_test.cc.o
+clang++ $cflags -c trusted/gtest_main.cc -o out/gtest_main.cc.o
+clang++ $cflags out/system_io.c.o \
+                out/system_io_test.cc.o \
+                out/gtest_main.cc.o \
+                gtest/libgtest.a \
+                -lpthread \
+                -o out/minsfi_test 
+./out/minsfi_test
 
 # Build and run unzip_prog
 

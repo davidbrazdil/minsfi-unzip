@@ -29,4 +29,5 @@ pnacl-opt \
 pnacl-llc -mtriple=x86_64-linux-gnu -relocation-model=pic -filetype=obj \
     $output.bc -o $output.o
 objcopy --redefine-sym _start=sandbox_entry $output.o $output.o
-gcc -g -m64 -Wall -Werror trusted_runtime.c $output.o -o $output
+
+gcc -g -m64 -Wall -Werror trusted/runtime.c trusted/system_io.c $output.o -o $output
